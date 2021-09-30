@@ -21,3 +21,33 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Eclipse
+.classpath
+.project
+.settings/
+Common/bin/*
+PAVstat/bin/*
+Runmanagement/bin/*
+
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+
+# Visual Studio Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+dependency-reduced-pom.xml
+
+# Custom
+logs/
+_Downloads_/
+_LOCAL_/
+tmp/
