@@ -1,8 +1,11 @@
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.internal.utils.tuple.ImmutablePair;
 import net.dv8tion.jda.internal.utils.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +18,7 @@ import java.util.stream.IntStream;
  * @author Maglethong spirr
  * @since 04/10/2021
  */
-public class DiceParser {
+public class DiceParser extends ListenerAdapter {
 
     private final Random rng;
 
@@ -23,6 +26,24 @@ public class DiceParser {
         this.rng = rng;
     }
 
+    @Override
+    public void onMessageReceived(MessageReceivedEvent event) {
+        final String msg = event.getMessage().getContentRaw().trim().toLowerCase(Locale.ROOT);
+        final Pair<String, Integer> result;
+        if (msg.startsWith("roll")) {
+            result = parse(msg.replace("r", ""));
+        } else if (msg.startsWith("r")) {
+            result = parse(msg.replace("r", ""));
+        } else {
+            result = null;
+        }
+
+        if (result != null) {
+            event.getChannel()
+                 .sendMessage(result.getRight() + "`" + result.getLeft() + "`")
+                 .queue();
+        }
+    }
     /*
      * Notes:
      *
@@ -68,13 +89,13 @@ public class DiceParser {
 
             final String innerLeft = "(" + results.stream()
                             .map(d -> "" + d)
-                            .collect(Collectors.joining(" + ")) + ")";
+                            .collect(Collectors.joining("+")) + ")";
 //            final Integer innerRight = results.stream()
 //                                              .reduce(Integer::sum)
 //                                              .orElse(0);
             left = left.replace(matcher.group(0), innerLeft);
         }
-        
+
         // Add terms
         final Integer right = Arrays.stream(left.split("[+]"))
                         .map(s -> s.replaceAll("[(]", "").replaceAll("[)]", "")) // for now, ignoring parentheses
@@ -86,6 +107,6 @@ public class DiceParser {
     }
 
     private int roll(final int sides) {
-        return (rng.nextInt() % sides +1);
+        return (Math.abs(rng.nextInt()) % sides +1);
     }
 }

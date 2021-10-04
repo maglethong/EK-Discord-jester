@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * Dummy Main class
@@ -23,9 +24,10 @@ public class App {
         final String token = props.getProperty("app.bot.token");
 
         final JDA jda = JDABuilder.createDefault(token, GatewayIntent.GUILD_MESSAGES)
-                            .addEventListeners(new ExampleListener())
-                            .addEventListeners(new PingListener())
-                            .build();
+                                  .addEventListeners(new ExampleListener())
+                                  .addEventListeners(new PingListener())
+                                  .addEventListeners(new DiceParser(new Random()))
+                                  .build();
 
         jda.awaitReady();
 
