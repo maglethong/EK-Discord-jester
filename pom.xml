@@ -14,8 +14,8 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <dependency.jupiter.version>5.4.2</dependency.jupiter.version>
-        <dependency.log4j.version>2.0.1</dependency.log4j.version>
-        <dependency.slf4j.version>1.7.30</dependency.slf4j.version>
+        <dependency.log4j.version>2.14.1</dependency.log4j.version>
+        <dependency.slf4j.version>1.7.32</dependency.slf4j.version>
         <dependency.jackson.version>2.12.3</dependency.jackson.version>
         <dependency.mockito.version>2.23.4</dependency.mockito.version>
         <dependency.commons.version>2.7</dependency.commons.version>
@@ -26,26 +26,17 @@
     <dependencies>
 
         <!-- Logging -->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>${dependency.slf4j.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-api</artifactId>-->
-<!--            <version>${dependency.log4j.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-core</artifactId>-->
-<!--            <version>${dependency.log4j.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-slf4j-impl</artifactId>-->
-<!--            <version>${dependency.log4j.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${dependency.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${dependency.log4j.version}</version>
+            <scope>optional</scope>
+        </dependency>
 
         <!-- Java Discord Api -->
         <dependency>

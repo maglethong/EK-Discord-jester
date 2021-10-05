@@ -5,7 +5,7 @@ A Java based Discord bor For The Elemental Kings Server
 # TODO List
 
 ## Project - Technical
-- [ ] Add and configure proper Logging
+- [x] Add and configure proper Logging
 - [ ] Define Unit Testing
 - [ ] Define Application configuration properly
 - [ ] Define and configure proper project structure
